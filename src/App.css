@@ -1,0 +1,1548 @@
+/* ==========================================================================
+   TARJETA DIGITAL SORPRESA PARA SHARON 🌷
+   ========================================================================== */
+
+.surprise-app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* ==========================================================================
+   HEADER TOP BAR
+   ========================================================================== */
+.header-top-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(253, 250, 246, 0.75);
+  border-bottom: 1px solid rgba(232, 165, 152, 0.25);
+  transition: all 0.3s ease;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-tulip {
+  font-size: 1.25rem;
+  filter: drop-shadow(0 2px 4px rgba(200, 125, 116, 0.2));
+}
+
+.brand-name {
+  font-family: var(--font-serif-title);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--pink-dusty);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Audio Player Floating Button */
+.audio-floating-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(200, 125, 116, 0.3);
+  color: var(--pink-dusty);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(115, 55, 49, 0.06);
+  transition: all 0.25s ease;
+}
+
+.audio-floating-button:hover {
+  background: #fff;
+  border-color: var(--pink-dusty);
+  box-shadow: 0 4px 12px rgba(200, 125, 116, 0.15);
+  transform: translateY(-1px);
+}
+
+.audio-floating-button.playing {
+  background: var(--pink-pastel);
+  border-color: var(--pink-soft);
+  color: var(--pink-deep);
+}
+
+.equalizer-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.equalizer-bars .bar {
+  width: 2.5px;
+  background: var(--pink-dusty);
+  border-radius: 2px;
+  animation: equalize 1s ease-in-out infinite alternate;
+}
+
+.equalizer-bars .bar-1 { height: 6px; animation-delay: 0.1s; }
+.equalizer-bars .bar-2 { height: 13px; animation-delay: 0.3s; }
+.equalizer-bars .bar-3 { height: 9px; animation-delay: 0.2s; }
+.equalizer-bars .bar-4 { height: 11px; animation-delay: 0.4s; }
+
+@keyframes equalize {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+.btn-header-qr {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(138, 154, 134, 0.4);
+  color: var(--sage-dark);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn-header-qr:hover {
+  background: #fff;
+  border-color: var(--sage-main);
+  color: var(--sage-deep);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   MAIN EXPERIENCE CONTAINER
+   ========================================================================== */
+.main-experience-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   1. ENVELOPE INTRO SECTION
+   ========================================================================== */
+.envelope-intro-section {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+  position: relative;
+  animation: fadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.title-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(247, 214, 208, 0.5);
+  border: 1px solid rgba(232, 165, 152, 0.4);
+  color: var(--pink-deep);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.intro-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.6rem, 5.2vw, 2.3rem);
+  font-weight: 700;
+  color: var(--pink-deep);
+  line-height: 1.28;
+  letter-spacing: -0.3px;
+  margin-bottom: 14px;
+}
+
+.intro-subtitle {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: clamp(1.05rem, 3.8vw, 1.28rem);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+
+/* 3D Envelope Container */
+.envelope-container {
+  position: relative;
+  width: 290px;
+  height: 195px;
+  margin: 10px auto 30px;
+  cursor: pointer;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.envelope-container:hover {
+  transform: translateY(-4px);
+}
+
+.envelope-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 220px;
+  border-radius: var(--radius-md);
+  background: radial-gradient(circle, rgba(232, 165, 152, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.95; }
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #F3DDD7;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px -5px rgba(115, 55, 49, 0.18), 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #EED1CA;
+  border-radius: 10px;
+}
+
+/* Inside Card Peek */
+.envelope-card-peek {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  right: 15px;
+  height: 140px;
+  background: #FFFDFB;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  padding: 14px;
+  transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  z-index: 2;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.envelope-container.open .envelope-card-peek {
+  transform: translateY(-80px);
+}
+
+.card-peek-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mini-tulip {
+  font-size: 1.1rem;
+}
+
+.mini-text {
+  font-family: var(--font-serif-title);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--pink-dusty);
+}
+
+.card-peek-lines .line {
+  height: 4px;
+  background: rgba(200, 125, 116, 0.2);
+  border-radius: 2px;
+  margin-top: 6px;
+}
+
+.card-peek-lines .line.short {
+  width: 65%;
+}
+
+/* Envelope Folds */
+.envelope-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 145px solid #F5D5CE;
+  border-top: 97px solid transparent;
+  border-bottom: 98px solid transparent;
+  z-index: 3;
+  border-radius: 10px 0 0 10px;
+}
+
+.envelope-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-right: 145px solid #F2CEC7;
+  border-top: 97px solid transparent;
+  border-bottom: 98px solid transparent;
+  z-index: 3;
+  border-radius: 0 10px 10px 0;
+}
+
+.envelope-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 110px solid #E9BDB4;
+  border-left: 145px solid transparent;
+  border-right: 145px solid transparent;
+  z-index: 4;
+  border-radius: 0 0 10px 10px;
+}
+
+/* 3D Top Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 108px solid #E2ABA1;
+  border-left: 145px solid transparent;
+  border-right: 145px solid transparent;
+  z-index: 5;
+  transform-origin: top center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px 10px 0 0;
+}
+
+.envelope-container.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+  border-top-color: #D89F95;
+}
+
+/* Golden Wax Seal */
+.wax-seal {
+  position: absolute;
+  top: 94px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #F5DE9C, #D4AF37 55%, #A8831E 95%);
+  box-shadow: 0 4px 12px rgba(168, 131, 30, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.envelope-container.open .wax-seal {
+  transform: translate(-50%, -120px) scale(0.7);
+  opacity: 0;
+}
+
+.seal-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.seal-monogram {
+  font-family: var(--font-serif-title);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #5D430C;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.seal-leaf {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.envelope-tap-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 14px;
+  letter-spacing: 0.3px;
+  transition: opacity 0.3s ease;
+}
+
+/* Open Surprise Button */
+.intro-button-wrapper {
+  margin-top: 10px;
+}
+
+.btn-open-surprise {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #C87D74 0%, #B2655C 50%, #9D554D 100%);
+  color: #FFFDF9;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  box-shadow: 0 8px 24px rgba(178, 101, 92, 0.35), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 52px;
+}
+
+.btn-open-surprise::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-open-surprise:hover::before {
+  left: 100%;
+}
+
+.btn-open-surprise:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(178, 101, 92, 0.45);
+}
+
+.btn-open-surprise:active {
+  transform: translateY(1px);
+}
+
+.btn-sparkle {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   2. OPENED CARD EXPERIENCE FLOW
+   ========================================================================== */
+.opened-experience-flow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  animation: cardFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   3. DIGITAL SURPRISE CARD
+   ========================================================================== */
+.card-container {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.card-outer-shimmer {
+  padding: 3px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(247, 214, 208, 0.6) 30%, rgba(212, 175, 55, 0.35) 70%, rgba(200, 125, 116, 0.5));
+  box-shadow: var(--shadow-paper);
+}
+
+.card-inner-paper {
+  position: relative;
+  background-color: #FFFDF9;
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(247, 214, 208, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(232, 165, 152, 0.18) 0%, transparent 45%);
+  border-radius: 18px;
+  padding: 48px 36px 42px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Card Header */
+.card-header {
+  text-align: center;
+  margin-bottom: 26px;
+  position: relative;
+  z-index: 5;
+}
+
+.card-crest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FCEEE9;
+  border: 1px solid rgba(200, 125, 116, 0.3);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(200, 125, 116, 0.1);
+}
+
+.crest-flower {
+  font-size: 1.4rem;
+}
+
+.card-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.45rem, 4.5vw, 2.05rem);
+  font-weight: 700;
+  color: var(--pink-deep);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+/* Message Body */
+.card-message-body {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.card-paragraph {
+  font-family: var(--font-serif-body);
+  font-size: clamp(1.15rem, 3.6vw, 1.32rem);
+  color: #4A3A37;
+  line-height: 1.75;
+  letter-spacing: 0.1px;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: paragraphReveal 0.8s ease forwards;
+}
+
+.card-paragraph.p-1 { animation-delay: 0.3s; }
+.card-paragraph.p-2 { animation-delay: 0.6s; }
+.card-paragraph.p-3 { animation-delay: 0.9s; }
+
+@keyframes paragraphReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Signature Block */
+.card-footer {
+  margin-top: 14px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-divider {
+  margin: 18px auto 22px;
+}
+
+.signature-block {
+  margin-bottom: 24px;
+}
+
+.signature-preface {
+  font-family: var(--font-handwriting);
+  font-size: 1.55rem;
+  color: var(--pink-dusty);
+  margin-bottom: 4px;
+}
+
+.signature-team {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.15rem, 3.8vw, 1.35rem);
+  color: var(--pink-deep);
+  letter-spacing: 0.2px;
+}
+
+.signature-team strong {
+  font-weight: 700;
+}
+
+.end-flower-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.glowing-heart {
+  font-size: 1.25rem;
+  animation: heartPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+.sparkle-gold {
+  font-size: 1rem;
+  animation: goldSpin 3s linear infinite;
+}
+
+@keyframes goldSpin {
+  0% { transform: rotate(0deg); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0.7; }
+}
+
+/* Card Action Button */
+.card-action-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-thanks {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #FCEEE9 0%, #F7D6D0 100%);
+  border: 1.5px solid var(--pink-soft);
+  color: var(--pink-deep);
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(200, 125, 116, 0.18);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.btn-thanks:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #F7D6D0 0%, #E8A598 100%);
+  color: #fff;
+  border-color: var(--pink-dusty);
+  box-shadow: 0 6px 20px rgba(200, 125, 116, 0.28);
+}
+
+.btn-thanks.clicked {
+  transform: scale(0.97);
+}
+
+.scroll-cue {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   4. STICKMAN SCENE (10. ESCENA FINAL: LOS 5 COMPAÑEROS Y SHARON CON SU RAMO)
+   ========================================================================== */
+.stickman-stage-section {
+  width: 100%;
+  max-width: 740px;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stickman-stage-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stage-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(138, 154, 134, 0.2);
+  border: 1px solid rgba(138, 154, 134, 0.4);
+  color: var(--sage-deep);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stage-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.4rem, 4.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-bottom: 4px;
+}
+
+.stage-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.stickman-canvas-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.stage-paper-card {
+  position: relative;
+  width: 100%;
+  background: #FFFDF9;
+  border-radius: 18px;
+  box-shadow: var(--shadow-paper);
+  border: 1.5px solid rgba(232, 165, 152, 0.3);
+  padding: 10px 6px;
+  overflow: hidden;
+}
+
+.stickman-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hand-drawn Stick Figure Stroke Styles */
+.stick-head {
+  fill: #FFFDF9;
+  stroke: #453430;
+  stroke-width: 2.8px;
+  stroke-linecap: round;
+}
+
+.sharon-head {
+  stroke: #7B3E35;
+  stroke-width: 2.8px;
+}
+
+.stick-eye {
+  fill: #453430;
+}
+
+.stick-mouth {
+  fill: none;
+  stroke: #453430;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+
+.sharon-smile {
+  stroke: #B84738;
+}
+
+.stick-body {
+  stroke: #453430;
+  stroke-width: 2.8px;
+  stroke-linecap: round;
+}
+
+.stick-arm,
+.stick-leg {
+  fill: none;
+  stroke: #453430;
+  stroke-width: 2.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sharon-arm-left,
+.sharon-arm-right {
+  stroke: #7B3E35;
+}
+
+.char-nametag {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  fill: #614F4B;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.sharon-nametag {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  fill: #9D554D;
+}
+
+/* ==========================================================================
+   STICKMAN ANIMATION PHASES
+   ========================================================================== */
+
+/* Phase 1: Progressive Drawing Stroke */
+.phase-drawing .draw-stroke,
+.phase-drawing .stick-body,
+.phase-drawing .stick-arm,
+.phase-drawing .stick-leg {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawStroke 2s ease-in-out forwards;
+}
+
+.phase-drawing .stick-head {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawStroke 1.8s ease-in-out forwards;
+}
+
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Phase 2: Walking Cycle */
+.phase-walking .cw-1 {
+  animation: walkFromLeftFar 3s ease-in-out forwards;
+}
+
+.phase-walking .cw-2 {
+  animation: walkFromLeftNear 3s ease-in-out forwards;
+}
+
+.phase-walking .cw-3 {
+  animation: walkFromLeftDeliver 3s ease-in-out forwards;
+}
+
+.phase-walking .cw-4 {
+  animation: walkFromRightNear 3s ease-in-out forwards;
+}
+
+.phase-walking .cw-5 {
+  animation: walkFromRightFar 3s ease-in-out forwards;
+}
+
+@keyframes walkFromLeftFar {
+  0% { transform: translateX(-120px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes walkFromLeftNear {
+  0% { transform: translateX(-90px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes walkFromLeftDeliver {
+  0% { transform: translateX(-80px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes walkFromRightNear {
+  0% { transform: translateX(90px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes walkFromRightFar {
+  0% { transform: translateX(120px); }
+  100% { transform: translateX(0); }
+}
+
+.phase-walking .stick-leg-left {
+  animation: legSwingLeft 0.5s ease-in-out infinite alternate;
+  transform-origin: 0 305px;
+}
+
+.phase-walking .stick-leg-right {
+  animation: legSwingRight 0.5s ease-in-out infinite alternate;
+  transform-origin: 0 305px;
+}
+
+@keyframes legSwingLeft {
+  0% { transform: rotate(-16deg); }
+  100% { transform: rotate(16deg); }
+}
+
+@keyframes legSwingRight {
+  0% { transform: rotate(16deg); }
+  100% { transform: rotate(-16deg); }
+}
+
+/* Phase 3 & 4: Bouquet Bloom & Sharon Delivery */
+.phase-blooming .bouquet-group,
+.phase-celebrating .bouquet-group,
+.phase-finished .bouquet-group {
+  animation: bouquetBloom 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes bouquetBloom {
+  0% {
+    transform: translate(0, 268px) scale(0.7);
+  }
+  50% {
+    transform: translate(0, 268px) scale(1.25);
+  }
+  100% {
+    transform: translate(0, 268px) scale(1.08);
+  }
+}
+
+.phase-blooming .floating-bouquet-sparks,
+.phase-celebrating .floating-bouquet-sparks,
+.phase-finished .floating-bouquet-sparks {
+  animation: floatSparks 2.5s ease-out infinite;
+}
+
+@keyframes floatSparks {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-24px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Phase 4: Celebration Jumping & Waving */
+.phase-celebrating .coworker-group,
+.phase-celebrating .sharon-group {
+  animation: celebratoryJump 0.8s ease-in-out infinite alternate;
+}
+
+.phase-celebrating .cw-1 { animation-delay: 0.1s; }
+.phase-celebrating .cw-2 { animation-delay: 0.3s; }
+.phase-celebrating .sharon-group { animation-delay: 0.2s; }
+.phase-celebrating .cw-3 { animation-delay: 0.25s; }
+.phase-celebrating .cw-4 { animation-delay: 0.15s; }
+.phase-celebrating .cw-5 { animation-delay: 0.35s; }
+
+@keyframes celebratoryJump {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-16px);
+  }
+}
+
+/* Arms Waving */
+.waving-arm {
+  transform-origin: 0 245px;
+  animation: waveArm 0.8s ease-in-out infinite alternate;
+}
+
+.cheering-arm {
+  transform-origin: 0 245px;
+  animation: cheerArm 0.7s ease-in-out infinite alternate;
+}
+
+.waving-arm-2 {
+  transform-origin: 0 245px;
+  animation: waveArm 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes waveArm {
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(18deg); }
+}
+
+@keyframes cheerArm {
+  0% { transform: rotate(10deg); }
+  100% { transform: rotate(-14deg); }
+}
+
+/* Final Banner */
+.stickman-final-banner {
+  margin-top: 24px;
+  text-align: center;
+  padding: 24px 20px;
+  background: rgba(255, 253, 249, 0.95);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 24px rgba(115, 55, 49, 0.08);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.stickman-final-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.banner-flower-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.banner-title {
+  font-family: var(--font-serif-title);
+  font-size: clamp(1.28rem, 4.2vw, 1.75rem);
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-bottom: 6px;
+}
+
+.banner-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.banner-names {
+  font-family: var(--font-serif-title);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--pink-dusty);
+  letter-spacing: 0.8px;
+  margin-bottom: 18px;
+}
+
+.banner-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-replay-anim {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  background: var(--pink-pastel);
+  border: 1px solid var(--pink-soft);
+  color: var(--pink-deep);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-replay-anim:hover {
+  background: var(--pink-blush);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+.experience-footer {
+  text-align: center;
+  padding: 24px 20px;
+  border-top: 1px solid rgba(232, 165, 152, 0.2);
+  background: rgba(250, 247, 242, 0.6);
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-quote {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.btn-footer-qr {
+  font-size: 0.82rem;
+  color: var(--sage-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.btn-footer-qr:hover {
+  opacity: 1;
+  color: var(--sage-deep);
+}
+
+/* ==========================================================================
+   6. MODAL GENERADOR DE QR & TARJETA IMPRIMIBLE
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 18, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-content {
+  background: #FFFDF9;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-icon {
+  font-size: 1.6rem;
+}
+
+.modal-title {
+  font-family: var(--font-serif-title);
+  font-size: 1.25rem;
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.modal-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.modal-close-btn {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--pink-pastel);
+  color: var(--pink-deep);
+}
+
+/* Alert Guidance */
+.alert-guidance {
+  display: flex;
+  gap: 12px;
+  background: #FFF8E6;
+  border: 1px solid #E5C158;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  font-size: 0.84rem;
+  color: #6B4E00;
+  line-height: 1.45;
+}
+
+.alert-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.alert-text p {
+  margin-top: 4px;
+}
+
+.alert-text code {
+  background: #FFEFC2;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* URL Input */
+.url-input-section {
+  margin-bottom: 22px;
+}
+
+.url-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.url-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.url-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(200, 125, 116, 0.4);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  background: #FFF;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.url-input:focus {
+  border-color: var(--pink-dusty);
+  box-shadow: 0 0 0 3px rgba(200, 125, 116, 0.15);
+}
+
+.btn-use-current {
+  padding: 10px 14px;
+  background: var(--pink-pastel);
+  border: 1px solid var(--pink-soft);
+  border-radius: var(--radius-sm);
+  color: var(--pink-deep);
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.btn-use-current:hover {
+  background: var(--pink-blush);
+}
+
+.url-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Printable Card Preview */
+.qr-preview-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 24px;
+}
+
+.printable-card {
+  width: 260px;
+  background: #FFFFFF;
+  border: 2px dashed #D4AF37;
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.printable-border {
+  position: relative;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 10px;
+  padding: 16px 12px;
+  text-align: center;
+  background: #FFFDFB;
+}
+
+.printable-floral-corner {
+  position: absolute;
+  font-size: 0.95rem;
+}
+
+.printable-floral-corner.top-left { top: 4px; left: 4px; }
+.printable-floral-corner.top-right { top: 4px; right: 4px; }
+.printable-floral-corner.bottom-left { bottom: 4px; left: 4px; }
+.printable-floral-corner.bottom-right { bottom: 4px; right: 4px; }
+
+.printable-to {
+  font-family: var(--font-handwriting);
+  font-size: 1.25rem;
+  color: var(--pink-dusty);
+}
+
+.printable-name {
+  font-family: var(--font-serif-title);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin-bottom: 2px;
+}
+
+.printable-sub {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.printable-qr-wrapper {
+  background: #FFFFFF;
+  padding: 8px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 10px;
+}
+
+.printable-qr-image {
+  display: block;
+  width: 140px;
+  height: 140px;
+}
+
+.printable-instruction {
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.printable-from {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* Modal Action Buttons */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-modal-action {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-action.primary {
+  background: linear-gradient(135deg, #C87D74 0%, #9D554D 100%);
+  color: #FFF;
+  box-shadow: 0 4px 12px rgba(157, 85, 77, 0.3);
+}
+
+.btn-modal-action.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(157, 85, 77, 0.4);
+}
+
+.btn-modal-action.secondary {
+  background: #FFF;
+  border: 1px solid rgba(200, 125, 116, 0.4);
+  color: var(--pink-deep);
+}
+
+.btn-modal-action.secondary:hover {
+  background: var(--pink-pastel);
+  border-color: var(--pink-dusty);
+}
+
+/* ==========================================================================
+   7. PRINT MEDIA STYLES (@media print)
+   ========================================================================== */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  /* Hide everything except the printable card */
+  .header-top-bar,
+  .main-experience-container,
+  .experience-footer,
+  .petals-canvas,
+  .modal-header,
+  .alert-guidance,
+  .url-input-section,
+  .modal-actions,
+  .modal-close-btn {
+    display: none !important;
+  }
+
+  .modal-backdrop {
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  .modal-content {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .qr-preview-container {
+    margin: 20mm auto !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .printable-card {
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    border: 1.5px dashed #666 !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   8. RESPONSIVE DESIGN FOR MOBILE PHONES (320px - 430px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .header-top-bar {
+    padding: 10px 14px;
+  }
+
+  .audio-label {
+    display: none;
+  }
+
+  .audio-floating-button {
+    padding: 7px 10px;
+  }
+
+  .btn-header-qr {
+    padding: 7px 10px;
+    font-size: 0.78rem;
+  }
+
+  .main-experience-container {
+    padding: 16px 12px 30px;
+  }
+
+  .card-inner-paper {
+    padding: 38px 20px 32px;
+  }
+
+  .corner-botanical {
+    width: 65px !important;
+    height: 65px !important;
+  }
+
+  .envelope-container {
+    width: 260px;
+    height: 180px;
+  }
+
+  .envelope-left {
+    border-left-width: 130px;
+    border-top-width: 90px;
+    border-bottom-width: 90px;
+  }
+
+  .envelope-right {
+    border-right-width: 130px;
+    border-top-width: 90px;
+    border-bottom-width: 90px;
+  }
+
+  .envelope-bottom {
+    border-bottom-width: 100px;
+    border-left-width: 130px;
+    border-right-width: 130px;
+  }
+
+  .envelope-flap {
+    border-top-width: 100px;
+    border-left-width: 130px;
+    border-right-width: 130px;
+  }
+
+  .btn-open-surprise {
+    padding: 14px 26px;
+    font-size: 0.98rem;
+  }
+
+  .btn-thanks {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 18px;
+    font-size: 0.88rem;
+  }
+
+  .modal-content {
+    padding: 20px 16px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floatGentle {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(6deg); }
+}

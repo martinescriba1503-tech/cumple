@@ -1,0 +1,112 @@
+/* ==========================================================================
+   RESET & DESIGN SYSTEM TOKENS - PARA SHARON 🌸
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-ivory: #FAF7F2;
+  --bg-ivory-warm: #FFFDF9;
+  --bg-paper: #FCFAF7;
+  --bg-paper-texture: #F8F3EC;
+
+  --pink-pastel: #FCEEE9;
+  --pink-blush: #F7D6D0;
+  --pink-soft: #E8A598;
+  --pink-dusty: #C87D74;
+  --pink-deep: #9D554D;
+
+  --sage-light: #A3B19B;
+  --sage-main: #8A9A86;
+  --sage-dark: #6D8069;
+  --sage-deep: #4F604B;
+
+  --gold-light: #F3DA8E;
+  --gold-main: #D4AF37;
+  --gold-deep: #B38E22;
+  --gold-foil: linear-gradient(135deg, #ECC86A 0%, #D4AF37 50%, #FAF0CD 70%, #B38E22 100%);
+
+  --text-primary: #3B2D2B;
+  --text-secondary: #6B5B57;
+  --text-muted: #8E7C77;
+  --text-gold: #967018;
+
+  /* Typography */
+  --font-serif-title: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* Shadows & Glassmorphism */
+  --shadow-paper: 0 10px 30px -5px rgba(115, 55, 49, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 20px 40px -10px rgba(115, 55, 49, 0.15), 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-gold: 0 4px 15px rgba(212, 175, 55, 0.35);
+
+  /* Borders & Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-ivory);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(247, 214, 208, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(200, 125, 116, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(253, 250, 246, 0.8) 0%, rgba(250, 247, 242, 1) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
