@@ -742,6 +742,35 @@
   color: var(--text-secondary);
 }
 
+.stage-header-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-stage-quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 244, 241, 0.95);
+  border: 1px solid rgba(232, 165, 152, 0.45);
+  color: var(--pink-deep);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(115, 55, 49, 0.06);
+  transition: all 0.25s ease;
+}
+
+.btn-stage-quick:hover,
+.btn-stage-quick.active {
+  background: var(--pink-blush);
+  border-color: var(--pink-soft);
+  transform: translateY(-1px);
+}
+
 .stickman-canvas-wrapper {
   width: 100%;
   position: relative;
@@ -756,6 +785,149 @@
   border: 1.5px solid rgba(232, 165, 152, 0.3);
   padding: 10px 6px;
   overflow: hidden;
+}
+
+/* Camera Viewfinder Overlay on the stage */
+.camera-viewfinder-overlay {
+  position: absolute;
+  inset: 12px;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.camera-viewfinder-overlay.active {
+  opacity: 1;
+}
+
+.vf-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: rgba(200, 125, 116, 0.65);
+  border-style: solid;
+}
+
+.vf-tl {
+  top: 4px;
+  left: 4px;
+  border-width: 2.5px 0 0 2.5px;
+  border-top-left-radius: 6px;
+}
+
+.vf-tr {
+  top: 4px;
+  right: 4px;
+  border-width: 2.5px 2.5px 0 0;
+  border-top-right-radius: 6px;
+}
+
+.vf-bl {
+  bottom: 4px;
+  left: 4px;
+  border-width: 0 0 2.5px 2.5px;
+  border-bottom-left-radius: 6px;
+}
+
+.vf-br {
+  bottom: 4px;
+  right: 4px;
+  border-width: 0 2.5px 2.5px 0;
+  border-bottom-right-radius: 6px;
+}
+
+.vf-badge {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 253, 249, 0.92);
+  border: 1px solid rgba(232, 165, 152, 0.4);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.vf-rec-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E05A47;
+  animation: recPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes recPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+/* Flash Screen Overlay */
+.camera-flash-overlay {
+  position: absolute;
+  inset: 0;
+  background: #FFFFFF;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.08s ease-in;
+}
+
+.camera-flash-overlay.flashing {
+  opacity: 0.88;
+  transition: opacity 0.45s ease-out;
+}
+
+/* Photo Snap Toast Notification */
+.stage-photo-toast {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 253, 249, 0.97);
+  border: 1.5px solid var(--pink-soft);
+  box-shadow: 0 6px 20px rgba(115, 55, 49, 0.16);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  z-index: 25;
+  animation: toastFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Speech / Photo Cue Bubble */
+.photo-cue-bubble {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.photo-cue-bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bubble-text {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  fill: #8A4036;
+  letter-spacing: 0.2px;
 }
 
 .stickman-svg {
@@ -958,29 +1130,116 @@
   }
 }
 
-/* Phase 4: Celebration Jumping & Waving */
-.phase-celebrating .coworker-group,
-.phase-celebrating .sharon-group {
-  animation: celebratoryJump 0.8s ease-in-out infinite alternate;
+/* ==========================================================================
+   PHOTO POSE & GATHERING MOVEMENTS ("Acercándose para una foto")
+   ========================================================================== */
+
+/* Photo cluster gathering: smooth transition towards Sharon at center */
+.photo-cluster-wrap {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: 0 368px;
 }
 
-.phase-celebrating .cw-1 { animation-delay: 0.1s; }
-.phase-celebrating .cw-2 { animation-delay: 0.3s; }
-.phase-celebrating .sharon-group { animation-delay: 0.2s; }
-.phase-celebrating .cw-3 { animation-delay: 0.25s; }
-.phase-celebrating .cw-4 { animation-delay: 0.15s; }
-.phase-celebrating .cw-5 { animation-delay: 0.35s; }
-
-@keyframes celebratoryJump {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-16px);
-  }
+.photo-cluster-wrap.cw-wrap-1.gathered {
+  transform: translateX(58px) rotate(5deg);
 }
 
-/* Arms Waving */
+.photo-cluster-wrap.cw-wrap-2.gathered {
+  transform: translateX(35px) rotate(3deg);
+}
+
+.photo-cluster-wrap.cw-wrap-3.gathered {
+  transform: translateX(18px) rotate(1.5deg);
+}
+
+.photo-cluster-wrap.sharon-wrap.gathered {
+  transform: translateX(0px) rotate(0deg);
+}
+
+.photo-cluster-wrap.cw-wrap-4.gathered {
+  transform: translateX(-18px) rotate(-1.5deg);
+}
+
+.photo-cluster-wrap.cw-wrap-5.gathered {
+  transform: translateX(-58px) rotate(-5deg);
+}
+
+/* Micro-movement: continuous gentle swaying/leaning closer together for the photo */
+.photo-micro-sway {
+  transform-origin: 0 368px;
+}
+
+.photo-micro-sway.cw-sway-1.swaying {
+  animation: photoMicroSway1 2.8s ease-in-out infinite alternate;
+}
+
+.photo-micro-sway.cw-sway-2.swaying {
+  animation: photoMicroSway2 3.1s ease-in-out infinite alternate;
+}
+
+.photo-micro-sway.cw-sway-3.swaying {
+  animation: photoMicroSway3 3.3s ease-in-out infinite alternate;
+}
+
+.photo-micro-sway.sharon-sway.swaying {
+  animation: photoMicroSwaySharon 2.6s ease-in-out infinite alternate;
+}
+
+.photo-micro-sway.cw-sway-4.swaying {
+  animation: photoMicroSway4 3.3s ease-in-out infinite alternate;
+}
+
+.photo-micro-sway.cw-sway-5.swaying {
+  animation: photoMicroSway5 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes photoMicroSway1 {
+  0% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(5px) rotate(1.5deg) translateY(-2px); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+@keyframes photoMicroSway2 {
+  0% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(3.5px) rotate(1deg) translateY(-1.5px); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+@keyframes photoMicroSway3 {
+  0% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(2px) rotate(0.6deg) translateY(-1px); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+@keyframes photoMicroSwaySharon {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+@keyframes photoMicroSway4 {
+  0% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(-2px) rotate(-0.6deg) translateY(-1px); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+@keyframes photoMicroSway5 {
+  0% { transform: translateX(0px) rotate(0deg); }
+  50% { transform: translateX(-5px) rotate(-1.5deg) translateY(-2px); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+.abel-photo-arm {
+  transform-origin: 0 245px;
+  animation: abelCheer 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes abelCheer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(6deg); }
+}
+
+/* Arms Waving / Cheering */
 .waving-arm {
   transform-origin: 0 245px;
   animation: waveArm 0.8s ease-in-out infinite alternate;
@@ -1059,26 +1318,57 @@
 .banner-actions {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
+}
+
+.btn-take-photo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #FAD3CB 0%, #E8A598 100%);
+  border: 1px solid rgba(200, 125, 116, 0.4);
+  color: #5C2B24;
+  font-size: 0.92rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(232, 165, 152, 0.4);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-take-photo:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(232, 165, 152, 0.55);
 }
 
 .btn-replay-anim {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 20px;
+  padding: 11px 20px;
   border-radius: var(--radius-full);
   background: var(--pink-pastel);
   border: 1px solid var(--pink-soft);
   color: var(--pink-deep);
   font-size: 0.88rem;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .btn-replay-anim:hover {
   background: var(--pink-blush);
   transform: translateY(-1px);
+}
+
+.photo-count-badge {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  animation: toastFadeIn 0.3s ease;
 }
 
 /* ==========================================================================

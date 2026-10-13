@@ -232,3 +232,64 @@ class RomanticAudioPlayer {
 }
 
 export const romanticAudio = new RomanticAudioPlayer();
+
+/**
+ * Plays a realistic camera shutter click and chime using Web Audio API.
+ * Zero external files needed, 100% offline and cross-browser.
+ */
+export const playCameraClickSound = (): void => {
+  if (typeof window === 'undefined') return;
+  try {
+    const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtxClass) return;
+    const ctx = new AudioCtxClass();
+    const now = ctx.currentTime;
+
+    // 1. Shutter blade opening click (snappy burst)
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = 'triangle';
+    osc1.frequency.setValueAtTime(820, now);
+    osc1.frequency.exponentialRampToValueAtTime(140, now + 0.045);
+    gain1.gain.setValueAtTime(0.28, now);
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.048);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(now);
+    osc1.stop(now + 0.05);
+
+    // 2. Shutter blade closing click at +0.08s
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(980, now + 0.08);
+    osc2.frequency.exponentialRampToValueAtTime(160, now + 0.14);
+    gain2.gain.setValueAtTime(0.22, now + 0.08);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.145);
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.start(now + 0.08);
+    osc2.stop(now + 0.15);
+
+    // 3. Gentle harmonic chime at +0.20s (flash/confirmation sparkle)
+    const chime = ctx.createOscillator();
+    const chimeGain = ctx.createGain();
+    chime.type = 'sine';
+    chime.frequency.setValueAtTime(1760, now + 0.2); // A6
+    chime.frequency.exponentialRampToValueAtTime(2200, now + 0.38);
+    chimeGain.gain.setValueAtTime(0.08, now + 0.2);
+    chimeGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+    chime.connect(chimeGain);
+    chimeGain.connect(ctx.destination);
+    chime.start(now + 0.2);
+    chime.stop(now + 0.46);
+
+    // Automatically close context after sound finishes
+    setTimeout(() => {
+      ctx.close().catch(() => {});
+    }, 600);
+  } catch {
+    // Ignore audio errors gracefully
+  }
+};
+
